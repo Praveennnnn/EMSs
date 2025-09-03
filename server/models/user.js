@@ -10,6 +10,6 @@ const userSchema =new mongoose.Schema({
     updatedAt:{type :Date ,default :Date.now},
 })
 
-const user =mongoose.model("User",userSchema)
+const User =mongoose.model("user",userSchema)
 
-export default user
+export default User
