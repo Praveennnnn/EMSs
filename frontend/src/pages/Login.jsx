@@ -1,23 +1,33 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
   const [email,setEmail]= useState('')
   const [password,setPassword]= useState('')
+  const navigate =useNavigate()
 
   const handelSubmit= async (e)=>{
     e.preventDefault()
-    try{
-      const res= await axios.post("http://localhost:3000/api/auth/login",{email,password});
-      console.log(res)
-    }catch(err){
-      console.log(err)
+    try {
+      const res = await axios.post("http://localhost:3000/api/auth/login", { email, password });
+      
+      if (res.data.success) {
+        toast.success("Login successful! Welcome back.");
+        navigate("/AdminDashboard")
+
+      } else {
+        toast.error("Invalid credentials, please try again.");
+      }
+    } catch (err) {
+      toast.error("Something went wrong, please try again later.");
+      console.log(err);
     }
-  }
+  };
 
   return (
     
@@ -37,7 +47,7 @@ const Login = () => {
             </div>
 
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary">  Login </button>
+              <button type="submit" className="btn btn-primary" >  Login </button>
             </div>
           </form>
               <p className="text-center mt-3 text-muted">

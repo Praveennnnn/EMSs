@@ -1,6 +1,9 @@
 import{BrowserRouter,Routes,Route, Navigate} from "react-router-dom"
 import AdminDashboard from "./pages/AdminDashboard.jsx"
 import Login from "./pages/Login.jsx"
+import {ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
 
@@ -12,7 +15,8 @@ function App() {
         <Route path="/AdminDashboard" element ={<AdminDashboard/>}> </Route>
 
       </Routes>
-    </BrowserRouter>
+      <ToastContainer />
+      </BrowserRouter>
 
 
     
